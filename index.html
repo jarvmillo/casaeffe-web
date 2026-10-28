@@ -246,6 +246,8 @@ a.solo-item:hover strong{color:var(--accent)}
 .sent{display:grid;gap:10px;padding:18px;border-radius:6px;background:var(--soft);color:#0B2155}
 .sent-title{font-family:var(--display);font-weight:800;font-size:1.25rem}
 .sent .btn{justify-self:start}
+.hp{display:none!important}
+.lead button[disabled]{opacity:.6;cursor:wait}
 @media (max-width:820px){.form-grid{grid-template-columns:1fr}}
 @media (max-width:560px){.row2{grid-template-columns:1fr}}
 /* ---- interacción ---- */
@@ -588,10 +590,11 @@ section,header{scroll-margin-top:72px}
       <div class="field"><label for="f-msg">Cuéntanos qué necesitas <span class="opt">(opcional)</span></label><textarea id="f-msg" name="mensaje" rows="3"></textarea></div>
       <p class="form-err" id="f-err" role="alert" hidden></p>
       <button class="btn btn-primary" type="submit">Enviar solicitud <span class="arr">→</span></button>
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="sent" id="f-sent" hidden>
-        <p class="sent-title">¡Listo! Falta un paso.</p>
-        <p>Toca el botón para enviarnos tus datos por WhatsApp. Te respondemos en menos de 24 horas hábiles.</p>
-        <a class="btn btn-primary" id="f-wa" href="https://wa.me/56962009030" target="_blank" rel="noopener">Enviar por WhatsApp <span class="arr">→</span></a>
+        <p class="sent-title" id="f-sent-title">¡Recibimos tu solicitud!</p>
+        <p id="f-sent-text">Te escribiremos a tu correo o WhatsApp en menos de 24 horas hábiles. Si prefieres una respuesta más rápida, escríbenos directo.</p>
+        <a class="btn btn-primary" id="f-wa" href="https://wa.me/56962009030" target="_blank" rel="noopener">Escribir por WhatsApp <span class="arr">→</span></a>
       </div>
     </form>
   </div>
@@ -734,7 +737,28 @@ document.querySelectorAll('.copy').forEach(function(b){
       'Nombre: '+d.nombre+' '+d.apellido+'\nCorreo: '+d.correo+'\nTeléfono: '+d.telefono+'\nNegocio: '+d.negocio+
       (d.red?'\nRed a potenciar: '+d.red:'')+'\nInterés: '+d.pack+(d.mensaje?'\nMensaje: '+d.mensaje:'');
     wa.href='https://wa.me/56962009030?text='+encodeURIComponent(msg);
-    sent.hidden=false; wa.focus();
+    var btn=form.querySelector('button[type=submit]'),label=btn.innerHTML;
+    var title=document.getElementById('f-sent-title'),text=document.getElementById('f-sent-text');
+    function viaWhatsApp(){
+      title.textContent='¡Listo! Falta un paso.';
+      text.textContent='Toca el botón para enviarnos tus datos por WhatsApp. Te respondemos en menos de 24 horas hábiles.';
+      wa.innerHTML='Enviar por WhatsApp <span class="arr">→</span>';
+      sent.hidden=false; wa.focus();
+    }
+    if(form.botcheck&&form.botcheck.checked)return;
+    btn.disabled=true; btn.textContent='Enviando…';
+    var payload={access_key:'0a46246d-a297-4c5a-8a72-dbdc53fca648',
+      subject:'Nueva solicitud web casaeffe: '+d.pack+' · '+d.negocio,
+      from_name:'casaeffe.cl',replyto:d.correo,
+      Nombre:d.nombre+' '+d.apellido,Correo:d.correo,'Teléfono':d.telefono,Negocio:d.negocio,
+      'Red a potenciar':d.red||'—','Interés':d.pack,Mensaje:d.mensaje||'—'};
+    var done=false,timer=setTimeout(function(){if(!done){done=true;btn.disabled=false;btn.innerHTML=label;viaWhatsApp()}},8000);
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){return r.json()})
+      .then(function(j){if(done)return;done=true;clearTimeout(timer);btn.disabled=false;btn.innerHTML=label;
+        if(j&&j.success){form.querySelectorAll('input:not(.hp),select,textarea').forEach(function(el){el.value=''});sent.hidden=false;sent.scrollIntoView({block:'nearest'})}
+        else viaWhatsApp()})
+      .catch(function(){if(done)return;done=true;clearTimeout(timer);btn.disabled=false;btn.innerHTML=label;viaWhatsApp()});
   });
 })();
 </script>
