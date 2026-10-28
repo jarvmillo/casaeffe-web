@@ -1,0 +1,4 @@
+casaeffe - landing (versión 28 oct 2026)
+- index.html: la página completa (textos, colores y animaciones).
+- img/: fotos y logo. Para cambiar una foto, reemplaza el archivo con el mismo nombre.
+Cada cambio guardado en GitHub se publica solo en Cloudflare Pages en 1-2 minutos.
