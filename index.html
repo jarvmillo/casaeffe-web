@@ -127,6 +127,13 @@ h3{color:var(--heading)}
 .prog-delta{font-family:var(--mono);font-size:.78rem;font-weight:600;color:var(--accent);background:var(--soft);padding:3px 9px;border-radius:999px;min-width:56px;text-align:center}
 .prog-note{margin-top:10px;font-size:.82rem;color:var(--muted)}
 @media (max-width:460px){.progress-box{padding:14px 16px}.prog-row{gap:10px}}
+.feed.feed5{grid-template-columns:repeat(5,1fr)}
+.client-card{display:grid;gap:10px;padding:24px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.client-handle{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.02em;color:var(--accent);text-decoration:none;overflow-wrap:anywhere}
+.client-handle:hover{text-decoration:underline}
+.client-meta{color:var(--muted)}
+.client-card .zones{margin-top:6px}
+@media (max-width:900px){.feed .feed5,.feed.feed5{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:42%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}.feed5 figure{scroll-snap-align:start}}
 .case-notes{display:grid;gap:18px}
 .case-notes ul{margin:0;padding-left:1.1em;display:grid;gap:8px;color:var(--muted)}
 .case-notes li strong{color:var(--fg);font-weight:600}
@@ -321,10 +328,10 @@ section,header{scroll-margin-top:72px}
     <a class="brand" href="#top" aria-label="casaeffe, inicio"><img class="logo logo-l" src="img/logo-mark.png" alt="" width="54" height="41"><img class="logo logo-d" src="img/logo-mark-pink.png" alt="" width="54" height="41"><span><span class="bname">casaeffe</span><span class="btag">Agencia de marketing y audiovisual</span></span></a>
     <div class="navlinks">
       <a href="#servicios">Servicios</a>
-      <a href="#caso">Caso real</a>
+      <a href="#caso">Clientes</a>
       <a href="#packs">Packs</a>
       <a href="#temporada">Temporada</a>
-      <a class="btn btn-primary btn-sm" href="https://wa.me/56962009030?text=Hola%20Felipe%2C%20quiero%20mi%20mini%20auditor%C3%ADa%20gratis" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-primary btn-sm" href="https://wa.me/56940760650?text=Hola%20Felipe%2C%20quiero%20mi%20mini%20auditor%C3%ADa%20gratis" target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </div>
 </nav>
@@ -336,8 +343,8 @@ section,header{scroll-margin-top:72px}
       <h1>Tus redes, trabajando para potenciar <em>tu marca</em>.</h1>
       <p class="lede">Planificamos, creamos y medimos el contenido de tu negocio con apoyo de IA. Tú sigues atendiendo; nosotros nos encargamos de que te encuentren, te escriban y vuelvan.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="https://wa.me/56962009030?text=Hola%20Felipe%2C%20quiero%20mi%20mini%20auditor%C3%ADa%20gratis" target="_blank" rel="noopener">Pide tu mini auditoría gratis <span class="arr">→</span></a>
-        <a class="btn btn-ghost" href="#caso">Ver caso real</a>
+        <a class="btn btn-primary" href="https://wa.me/56940760650?text=Hola%20Felipe%2C%20quiero%20mi%20mini%20auditor%C3%ADa%20gratis" target="_blank" rel="noopener">Pide tu mini auditoría gratis <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="#caso">Ver clientes</a>
       </div>
       <div class="facts">
         <div><strong>5</strong>servicios por niveles</div>
@@ -441,6 +448,39 @@ section,header{scroll-margin-top:72px}
       <figure><div class="ph"><img src="img/b-fresco.jpg" alt="Plantilla de fruta y verdura fresca"></div><figcaption>Plantilla fresco</figcaption></figure>
       <figure><div class="ph"><img src="img/b-producto.jpg" alt="Plantilla de producto con precio"></div><figcaption>Plantilla precio</figcaption></figure>
       <figure><div class="ph"><img src="img/b-dobby.jpg" alt="Post presentando a Dobby, la mascota del local"></div><figcaption>Mascota de marca</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="toros">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label">Cliente · Diseño para redes</p>
+      <h2>Toros Rugby Club, Concepción</h2>
+    </div>
+    <div class="case-top">
+      <div class="case-notes">
+        <p class="lede">Creamos las piezas de Instagram del club: partidos, torneos, entrenamientos y eventos de todas sus categorías, para que cada anuncio se reconozca al tiro como de Toros.</p>
+        <ul>
+          <li><strong>Línea gráfica propia:</strong> fotos en blanco y negro con los colores del club en titulares y etiquetas.</li>
+          <li><strong>Plantilla de partido:</strong> logos de ambos equipos, torneo, sede, fecha y hora en una sola lectura.</li>
+          <li><strong>Auspiciadores visibles:</strong> franja fija con las marcas que apoyan al club en cada pieza.</li>
+          <li><strong>Todas las categorías:</strong> adulto, juvenil e infantil con el mismo sistema visual.</li>
+        </ul>
+      </div>
+      <div class="client-card">
+        <p class="label">Cuenta</p>
+        <a class="client-handle" href="https://instagram.com/torosrugbyclub" target="_blank" rel="noopener">@torosrugbyclub</a>
+        <p class="client-meta">Club de rugby · Concepción, Biobío</p>
+        <div class="zones"><span>Diseño de piezas</span><span>Instagram</span><span>Eventos y partidos</span></div>
+      </div>
+    </div>
+    <div class="feed feed5">
+      <figure><div class="ph"><img src="img/t-aruco.jpg" alt="Afiche de partido Toros contra Robles, torneo ARUCO"></div><figcaption>Partido de torneo</figcaption></figure>
+      <figure><div class="ph"><img src="img/t-austral.jpg" alt="Afiche de cuartos de final Toros contra Austral"></div><figcaption>Cuartos de final</figcaption></figure>
+      <figure><div class="ph"><img src="img/t-adulto.jpg" alt="Afiche de entrenamientos de rugby adulto"></div><figcaption>Entrenamientos</figcaption></figure>
+      <figure><div class="ph"><img src="img/t-juvenil.jpg" alt="Afiche de partido juvenil Toros contra Nómades"></div><figcaption>Categoría juvenil</figcaption></figure>
+      <figure><div class="ph"><img src="img/t-infantil.jpg" alt="Afiche del festival de rugby infantil"></div><figcaption>Evento del club</figcaption></figure>
     </div>
   </div>
 </section>
@@ -594,7 +634,7 @@ section,header{scroll-margin-top:72px}
       <div class="sent" id="f-sent" hidden>
         <p class="sent-title" id="f-sent-title">¡Recibimos tu solicitud!</p>
         <p id="f-sent-text">Te escribiremos a tu correo o WhatsApp en menos de 24 horas hábiles. Si prefieres una respuesta más rápida, escríbenos directo.</p>
-        <a class="btn btn-primary" id="f-wa" href="https://wa.me/56962009030" target="_blank" rel="noopener">Escribir por WhatsApp <span class="arr">→</span></a>
+        <a class="btn btn-primary" id="f-wa" href="https://wa.me/56940760650" target="_blank" rel="noopener">Escribir por WhatsApp <span class="arr">→</span></a>
       </div>
     </form>
   </div>
@@ -621,10 +661,10 @@ section,header{scroll-margin-top:72px}
       <p class="label">Contacto</p>
       <h2>Revisemos tu Instagram, gratis.</h2>
       <p>Escríbenos el nombre de tu negocio y te enviamos una mini auditoría con tres mejoras concretas. Sin compromiso.</p>
-      <div class="cta-row"><a class="btn btn-primary" href="https://wa.me/56962009030?text=Hola%20Felipe%2C%20quiero%20mi%20mini%20auditor%C3%ADa%20gratis" target="_blank" rel="noopener">Escribir por WhatsApp <span class="arr">→</span></a></div>
+      <div class="cta-row"><a class="btn btn-primary" href="https://wa.me/56940760650?text=Hola%20Felipe%2C%20quiero%20mi%20mini%20auditor%C3%ADa%20gratis" target="_blank" rel="noopener">Escribir por WhatsApp <span class="arr">→</span></a></div>
     </div>
     <div class="channels">
-      <div class="channel"><span class="label">WhatsApp</span><span class="v" id="c-wa">+56 9 6200 9030</span><button class="copy" data-copy="+56962009030" type="button">Copiar</button></div>
+      <div class="channel"><span class="label">WhatsApp</span><span class="v" id="c-wa">+56 9 4076 0650</span><button class="copy" data-copy="+56940760650" type="button">Copiar</button></div>
       <div class="channel"><span class="label">Correo</span><span class="v" id="c-mail">hola@casaeffe.cl</span><button class="copy" data-copy="hola@casaeffe.cl" type="button">Copiar</button></div>
       <div class="channel"><span class="label">Instagram</span><a class="v" href="https://instagram.com/casaeffe.cl" target="_blank" rel="noopener">@casaeffe.cl</a><span></span></div>
     </div>
@@ -663,7 +703,7 @@ document.querySelectorAll('.copy').forEach(function(b){
     else if(n.nodeType===1){n.classList.add('w');n.style.setProperty('--i',i++)}
   })}
   // aparición al hacer scroll
-  var groups=['.sec-head','.svc','.solo','.lead','.progress-box','.case-notes','.metrics','.feed figure','.pack','.step','.contact-copy','.channels','.fine','.bridge'];
+  var groups=['.sec-head','.svc','.solo','.lead','.progress-box','.case-notes','.metrics','.feed figure','.pack','.step','.contact-copy','.channels','.fine','.bridge','.client-card'];
   var els=[];groups.forEach(function(sel){document.querySelectorAll(sel).forEach(function(el,k){el.classList.add('rv');el.style.setProperty('--d',(k%6)*80+'ms');els.push(el)})});
   var vh=innerHeight, canIO=('IntersectionObserver' in window) && !reduce;
   // Todo parte oculto y el observador muestra de inmediato lo que ya está en pantalla.
@@ -736,7 +776,7 @@ document.querySelectorAll('.copy').forEach(function(b){
     var msg='Hola casaeffe, quiero cotizar.\n\n'+
       'Nombre: '+d.nombre+' '+d.apellido+'\nCorreo: '+d.correo+'\nTeléfono: '+d.telefono+'\nNegocio: '+d.negocio+
       (d.red?'\nRed a potenciar: '+d.red:'')+'\nInterés: '+d.pack+(d.mensaje?'\nMensaje: '+d.mensaje:'');
-    wa.href='https://wa.me/56962009030?text='+encodeURIComponent(msg);
+    wa.href='https://wa.me/56940760650?text='+encodeURIComponent(msg);
     var btn=form.querySelector('button[type=submit]'),label=btn.innerHTML;
     var title=document.getElementById('f-sent-title'),text=document.getElementById('f-sent-text');
     function viaWhatsApp(){
