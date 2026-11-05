@@ -86,7 +86,7 @@ nav .btn:hover,.hero .btn-primary:hover,.contact .btn-primary:hover{background:v
 .film-col{display:flex;flex-direction:column;gap:clamp(11px,1.5vw,24px);animation:film-rise 17s ease-in-out infinite alternate paused}
 .film-col:nth-child(2){margin-top:-27%;animation-name:film-fall}
 .film-col:nth-child(3){margin-top:5%;animation-delay:-6s}
-.hero-scene.is-playing .film-col{animation-play-state:running}
+.hero-scene.is-animating .film-col{animation-play-state:running}
 @keyframes film-rise{from{transform:translateY(0)}to{transform:translateY(-18%)}}
 @keyframes film-fall{from{transform:translateY(-11%)}to{transform:translateY(6%)}}
 .film-col img{aspect-ratio:4/5;object-fit:cover;border:1px solid #fff3fa6b;filter:saturate(.76);box-shadow:0 12px 34px #08142f99}
@@ -1775,16 +1775,16 @@ footer{
   let onScreen = !('IntersectionObserver' in window);
 
   function syncPlayback() {
-    if (reducedMotion.matches || !onScreen || document.hidden) {
+    const shouldAnimate = onScreen && !document.hidden && !reducedMotion.matches;
+    scene.classList.toggle('is-animating', shouldAnimate);
+
+    if (!shouldAnimate) {
       video.pause();
     } else if (video.paused && !video.ended) {
-      video.play().catch(() => scene.classList.remove('is-playing'));
+      video.play().catch(() => {
+        // The photo collage still runs when the browser blocks video autoplay.
+      });
     }
-  }
-
-  video.addEventListener('playing', () => scene.classList.add('is-playing'));
-  for (const event of ['pause','ended','error']) {
-    video.addEventListener(event, () => scene.classList.remove('is-playing'));
   }
   reducedMotion.addEventListener('change', syncPlayback);
   document.addEventListener('visibilitychange', syncPlayback);
