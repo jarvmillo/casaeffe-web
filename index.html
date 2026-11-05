@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <script>
-  if(location.hash==='#cotizar' && performance.getEntriesByType('navigation')[0]?.type==='reload'){
+  // En una recarga, deja que el navegador recupere la posición de lectura.
+  if(location.hash && performance.getEntriesByType('navigation')[0]?.type==='reload'){
     const pageUrl=new URL(location.href);
     pageUrl.hash='';
     history.replaceState(history.state,'',pageUrl);
